@@ -1,0 +1,21 @@
+{
+  "name": "persona-form-element",
+  "description": "Componente de registro de personas",
+  "main": "persona-form-element.js",
+  "dependencies": {
+    "@polymer/polymer": "^3.0.0",
+    "@vaadin/vaadin-button": "^2.1.5",
+    "@vaadin/vaadin-combo-box": "^4.2.8",
+    "@vaadin/vaadin-date-picker": "^3.3.4",
+    "@vaadin/vaadin-progress-bar": "^1.1.0",
+    "@vaadin/vaadin-text-field": "^2.3.7"
+  },
+  "devDependencies": {
+    "@polymer/iron-demo-helpers": "^3.0.0-pre.19",
+    "@polymer/test-fixture": "^4.0.2",
+    "@webcomponents/webcomponentsjs": "^2.0.0",
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "wct-mocha": "^1.0.0"
+  }
+}
