@@ -42,7 +42,7 @@ class PersonaFormElement extends PolymerElement {
     <div style="width: 100%;text-align: center; margin-top: 10px;">
       <vaadin-button on-click = "_registro" id = "btnRegistro" theme="primary small" >{{actionTitlePersona}}</vaadin-button>
       <vaadin-button on-click = "_eliminar" theme="error primary small" hidden$ = {{isUpdate}}  >Eliminar</vaadin-button>
-      <vaadin-button on-click = "_clearForm" id = "btnClear" theme="primary small" >Resget</vaadin-button>
+      <vaadin-button on-click = "_clearForm" id = "btnClear" theme="primary small" >Reset</vaadin-button>
     </div>
     `;
   }
@@ -74,6 +74,8 @@ class PersonaFormElement extends PolymerElement {
     this.$.btnRegistro.disabled = false;
     this.$.btnClear.disabled = false;
     this.$.loadingRegistro.hidden = true;
+    this.actionTitlePersona = 'Nuevo';
+    this.isUpdate = true;
   }
 
   _eliminar() {
