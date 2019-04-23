@@ -26,7 +26,7 @@ class PersonaFormElement extends PolymerElement {
    
     <vaadin-combo-box label="Tipo de documento" placeholder="Seleccione" items="[[documentsType]]" item-value-path="_id" item-label-path="codigo" value = "{{persona.tipoDocumento}}" ></vaadin-combo-box>
     <vaadin-text-field value = "{{persona.numDocumento}}" label="Número de documento"></vaadin-text-field>
-    <vaadin-date-picker id = "fecNac" label = "Fecha de nacimiento"></vaadin-date-picker>
+    <vaadin-date-picker value = "{{persona.fecNacimiento}}"  label = "Fecha de nacimiento"></vaadin-date-picker>
     <vaadin-text-field value = "{{persona.email}}" label="Email"></vaadin-text-field>
     <vaadin-text-field value = "{{persona.telefono}}" label="Telefono"></vaadin-text-field>
     <vaadin-progress-bar id = "loadingRegistro" hidden = "true" indeterminate value="0"></vaadin-progress-bar>
