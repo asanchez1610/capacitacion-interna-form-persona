@@ -68,8 +68,10 @@ class PersonaFormElement extends PolymerElement {
     this.dispatchEvent(new CustomEvent(
       'persona-registro-event',
       {
-        detail: this.persona,
-        fnSuccess: this._clearForm
+        detail: {
+          persona: this.persona,
+          fnSuccess: this._clearForm
+        }
       }));
   }
 
