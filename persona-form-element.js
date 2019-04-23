@@ -70,7 +70,7 @@ class PersonaFormElement extends PolymerElement {
       {
         detail: {
           persona: this.persona,
-          fnSuccess: this._clearForm
+          fnSuccess: ()=> { this._clearForm(); }
         }
       }));
   }
