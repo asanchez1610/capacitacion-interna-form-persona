@@ -40,8 +40,9 @@ class PersonaFormElement extends PolymerElement {
     <vaadin-text-field value = "{{persona.telefono}}" label="Telefono"></vaadin-text-field>
     <vaadin-progress-bar id = "loadingRegistro" hidden = "true" indeterminate value="0"></vaadin-progress-bar>
     <div style="width: 100%;text-align: center; margin-top: 10px;">
-      <vaadin-button on-click = "_registro" id = "btnRegistro" theme="primary" >{{actionTitlePersona}}</vaadin-button>
-       <vaadin-button on-tap = "_clearForm" id = "btnClear" theme="primary danger" >Reset</vaadin-button>
+      <vaadin-button on-click = "_registro" id = "btnRegistro" theme="primary small" >{{actionTitlePersona}}</vaadin-button>
+      <vaadin-button on-click = "_eliminar" theme="error primary small" hidden$ = {{isUpdate}}  >Eliminar</vaadin-button>
+      <vaadin-button on-click = "_clearForm" id = "btnClear" theme="primary small" >Resget</vaadin-button>
     </div>
     `;
   }
@@ -50,6 +51,10 @@ class PersonaFormElement extends PolymerElement {
       actionTitlePersona: {
         type: String,
         value: 'Nuevo'
+      },
+      isUpdate: {
+        type: Boolean,
+        value: true
       },
       persona: {
         type: Object,
@@ -62,8 +67,8 @@ class PersonaFormElement extends PolymerElement {
     };
   }
 
-  _clearForm(isUpdate) {
-    if (!isUpdate) {
+  _clearForm(clearPersona) {
+    if (clearPersona) {
       this.persona = {};
     }
     this.$.btnRegistro.disabled = false;
@@ -71,8 +76,18 @@ class PersonaFormElement extends PolymerElement {
     this.$.loadingRegistro.hidden = true;
   }
 
+  _eliminar() {
+    this.dispatchEvent(new CustomEvent(
+      'persona-eliminar-event',
+      {
+        detail: {
+          persona: this.persona,
+          fnSuccess: ()=> { this._clearForm(true); }
+        }
+      }));
+  }
+
   _registro() {
-    
     this.$.btnRegistro.disabled = true;
     this.$.btnClear.disabled = true;
     this.$.loadingRegistro.hidden = false;
@@ -83,7 +98,7 @@ class PersonaFormElement extends PolymerElement {
       {
         detail: {
           persona: this.persona,
-          fnSuccess: ()=> { this._clearForm(); }
+          fnSuccess: ()=> { this._clearForm(true); }
         }
       }));
   }
