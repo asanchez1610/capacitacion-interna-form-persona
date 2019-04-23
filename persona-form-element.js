@@ -5,6 +5,7 @@ import '@vaadin/vaadin-date-picker/vaadin-date-picker.js';
 import '@vaadin/vaadin-combo-box/vaadin-combo-box.js';
 import '@vaadin/vaadin-progress-bar/vaadin-progress-bar.js';
 import './persona-form-styles.js';
+import '@lrnwebcomponents/responsive-grid/responsive-grid.js';
 
 /**
  * `persona-form-element`
@@ -23,8 +24,17 @@ class PersonaFormElement extends PolymerElement {
     <vaadin-text-field label="Nombres" value = "{{persona.nombres}}"></vaadin-text-field>
     <vaadin-text-field label="Apellidos" value = "{{persona.apellidos}}"></vaadin-text-field>
    
-    <vaadin-combo-box label="Tipo de documento" placeholder="Seleccione" items="[[documentsType]]" item-value-path="_id" item-label-path="codigo" value = "{{persona.tipoDocumento}}" ></vaadin-combo-box>
-    <vaadin-text-field value = "{{persona.numDocumento}}" label="Número de documento"></vaadin-text-field>
+    <responsive-grid-row>
+      <responsive-grid-col xl="6" lg="6" md="6" sm="12" xs="12">
+       <vaadin-combo-box class = "custom-style" label="Tipo de documento" id = "tipoDocumento" placeholder="Seleccione" items="[[documentsType]]" item-value-path="_id" item-label-path="codigo" value = "{{persona.tipoDocumento._id}}" ></vaadin-combo-box>
+      </responsive-grid-col>
+      <responsive-grid-col xl="6" lg="6" md="6" sm="12" xs="12">
+       <vaadin-text-field class = "custom-style" value = "{{persona.numDocumento}}" label="Número de documento"></vaadin-text-field>
+      </responsive-grid-col>
+    </responsive-grid-row>
+
+  
+   
     <vaadin-date-picker id = "fecnacimiento" value = "{{persona.fecNacimiento}}"  label = "Fecha de nacimiento"></vaadin-date-picker>
     <vaadin-text-field value = "{{persona.email}}" label="Email"></vaadin-text-field>
     <vaadin-text-field value = "{{persona.telefono}}" label="Telefono"></vaadin-text-field>
@@ -39,7 +49,7 @@ class PersonaFormElement extends PolymerElement {
     return {
       actionTitlePersona: {
         type: String,
-        value: 'Registrar'
+        value: 'Nuevo'
       },
       persona: {
         type: Object,
@@ -52,18 +62,22 @@ class PersonaFormElement extends PolymerElement {
     };
   }
 
-  _clearForm() {
-    this.persona = {};
+  _clearForm(isUpdate) {
+    if (!isUpdate) {
+      this.persona = {};
+    }
     this.$.btnRegistro.disabled = false;
     this.$.btnClear.disabled = false;
     this.$.loadingRegistro.hidden = true;
   }
 
   _registro() {
-    console.log('Persona:', this.persona);
+    
     this.$.btnRegistro.disabled = true;
     this.$.btnClear.disabled = true;
     this.$.loadingRegistro.hidden = false;
+    this.persona.tipoDocumento = this.$.tipoDocumento.value;
+    console.log('Persona:', this.persona);
     this.dispatchEvent(new CustomEvent(
       'persona-registro-event',
       {

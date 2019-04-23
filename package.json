@@ -3,6 +3,7 @@
   "description": "Componente de registro de personas",
   "main": "persona-form-element.js",
   "dependencies": {
+    "@lrnwebcomponents/responsive-grid": "^2.0.9",
     "@polymer/polymer": "^3.0.0",
     "@vaadin/vaadin-button": "^2.1.5",
     "@vaadin/vaadin-combo-box": "^4.2.8",

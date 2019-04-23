@@ -11,6 +11,7 @@ $_documentContainer.innerHTML = `<dom-module id="persona-form-styles">
       vaadin-combo-box , vaadin-text-field , vaadin-date-picker{
         width: 100%;
       }
+      
     </style>
   </template>
 </dom-module>`;
