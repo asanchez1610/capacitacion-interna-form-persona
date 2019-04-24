@@ -56,15 +56,54 @@ class PersonaFormElement extends PolymerElement {
         type: Boolean,
         value: true
       },
+      idTipoDocumento: String,
       persona: {
         type: Object,
         value: {}
       },
       documentsType: {
         type: Array,
-        value: []
+        value: [
+          {
+              "_id": "5cbe1fc6d7485c17e007cb4c",
+              "descripcion": "Documento de identidad",
+              "codigo": "DNI",
+              "__v": 0
+          },
+          {
+              "_id": "5cbe1fd8d7485c17e007cb4d",
+              "descripcion": "RUC",
+              "codigo": "RUC",
+              "__v": 0
+          },
+          {
+              "_id": "5cbe1fe2d7485c17e007cb4e",
+              "descripcion": "CE",
+              "codigo": "CE",
+              "__v": 0
+          },
+          {
+              "_id": "5cbe1febd7485c17e007cb4f",
+              "descripcion": "PASAPORTE",
+              "codigo": "PASAPORTE",
+              "__v": 0
+          }
+      ]
       }
     };
+  }
+
+  ready() {
+    super.ready();
+    this.$.tipoDocumento.addEventListener('selected-item-changed', (event)=>this._changeTipoDocumento(event));
+  }
+
+  _changeTipoDocumento(event) {
+      if (event && event.detail && event.detail.value && event.detail.value._id) {
+        this.idTipoDocumento = event.detail.value._id;
+      } else {
+        this.idTipoDocumento = null;
+      }
   }
 
   _clearForm(clearPersona) {
@@ -93,7 +132,7 @@ class PersonaFormElement extends PolymerElement {
     this.$.btnRegistro.disabled = true;
     this.$.btnClear.disabled = true;
     this.$.loadingRegistro.hidden = false;
-    this.persona.tipoDocumento = this.$.tipoDocumento.value;
+    this.persona.tipoDocumento = this.idTipoDocumento;
     console.log('Persona:', this.persona);
     this.dispatchEvent(new CustomEvent(
       'persona-registro-event',
