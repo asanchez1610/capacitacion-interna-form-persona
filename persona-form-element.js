@@ -59,36 +59,12 @@ class PersonaFormElement extends PolymerElement {
       idTipoDocumento: String,
       persona: {
         type: Object,
-        value: {}
+        value: {},
+        notify: true
       },
       documentsType: {
         type: Array,
-        value: [
-          {
-              "_id": "5cbe1fc6d7485c17e007cb4c",
-              "descripcion": "Documento de identidad",
-              "codigo": "DNI",
-              "__v": 0
-          },
-          {
-              "_id": "5cbe1fd8d7485c17e007cb4d",
-              "descripcion": "RUC",
-              "codigo": "RUC",
-              "__v": 0
-          },
-          {
-              "_id": "5cbe1fe2d7485c17e007cb4e",
-              "descripcion": "CE",
-              "codigo": "CE",
-              "__v": 0
-          },
-          {
-              "_id": "5cbe1febd7485c17e007cb4f",
-              "descripcion": "PASAPORTE",
-              "codigo": "PASAPORTE",
-              "__v": 0
-          }
-      ]
+        value: []
       }
     };
   }
