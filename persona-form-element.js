@@ -33,11 +33,20 @@ class PersonaFormElement extends PolymerElement {
       </responsive-grid-col>
     </responsive-grid-row>
 
+    <responsive-grid-row>
+      <responsive-grid-col xl="6" lg="6" md="6" sm="12" xs="12">
+      <vaadin-date-picker id = "fecnacimiento" value = "{{persona.fecNacimiento}}"  label = "Fecha de nacimiento"></vaadin-date-picker>
+      </responsive-grid-col>
+      <responsive-grid-col xl="6" lg="6" md="6" sm="12" xs="12">
+      <vaadin-text-field value = "{{persona.telefono}}" label="Telefono"></vaadin-text-field>
+      </responsive-grid-col>
+    </responsive-grid-row>
   
    
-    <vaadin-date-picker id = "fecnacimiento" value = "{{persona.fecNacimiento}}"  label = "Fecha de nacimiento"></vaadin-date-picker>
+    
+    <vaadin-text-field value = "{{persona.direccion}}" label="Dirección"></vaadin-text-field>
     <vaadin-text-field value = "{{persona.email}}" label="Email"></vaadin-text-field>
-    <vaadin-text-field value = "{{persona.telefono}}" label="Telefono"></vaadin-text-field>
+    
     <vaadin-progress-bar id = "loadingRegistro" hidden = "true" indeterminate value="0"></vaadin-progress-bar>
     <div style="width: 100%;text-align: center; margin-top: 10px;">
       <vaadin-button on-click = "_registro" id = "btnRegistro" theme="primary small" >{{actionTitlePersona}}</vaadin-button>
